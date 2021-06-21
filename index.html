@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Booking</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--Header and Menu Section-->
+    <header class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a class="active" href="#">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!--Booking Section-->
+    <main class="main-content container">
+        <div class="booking-form">
+            <h3>Booking Flights</h3>
+            <div class="input-group">
+                <label for="">Flying From</label>
+                <input class="inp-style" type="text" name="" placeholder="Dhake, Bangladesh">
+            </div>
+            <div class="input-group">
+                <label for="">Flying To</label>
+                <input class="inp-style" type="text" name="" placeholder="New York, United States">
+            </div>
+            <div class="inputs">
+                <div class="input-group">
+                    <label" for="">Departure</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+                <div class="input-group">
+                    <label for="">Return</label>
+                    <input class="inp-style" type="date" name="">
+                </div>
+            </div>
+            <div class="input-group f-class">
+                <div>
+                    <label for="">First Class ($150)</label>
+                    <input id="First-class-count" class="inp-style inp-width" type="number"  name="">
+                    
+                </div>
+                <div class="plus-minus-btn">
+                    <button id="firstClass-plus" class="btn btn-outline-primary">+</button>
+                    <button id="firstClass-minus" class="btn btn-outline-primary">-</button>
+                </div>
+            </div>
+            
+            <div class="input-group f-class">
+                <div>
+                    <label for="">Economy ($100)</label>
+                    <input id="Economic-class-count" class="inp-style inp-width" type="number" name="">
+                </div>
+                <div class="plus-minus-btn">
+                    <button id="economic-plus" class="btn btn-outline-primary">+</button>
+                    <button id="economic-minus" class="btn btn-outline-primary">-</button> 
+                </div>
+            </div>
+            <div class="calculations">
+                <div class="amount">
+                    <div class="left">
+                        <p>Subtotal</p>
+                    </div>
+                    <div class="right">
+                        <p>$<span id="subtotal">0</span></p>
+                    </div>
+                </div>
+
+                <div class="amount">
+                    <div class="left">
+                        <p>Charge 10% VAT</p>
+                    </div>
+                    <div class="right">
+                        <p>$ <span id="tax">50</span></p>
+                    </div>
+                </div>
+                <hr>
+                <div class="amount">
+                    <div class="left">
+                        <h4>Total</h4>
+                    </div>
+                    <div class="right">
+                        <p>$ <span id="total">0</span></p>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-style">Book Now</button>
+        </div>
+
+        <div class="booking-content">
+            <h1>discover <br> around the world</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
+        </div>
+    </section>
+    <script>
+        document.getElementById("firstClass-plus").addEventListener("click", function(){
+            updatePlus("First-class-count",150);
+        })
+
+        document.getElementById("economic-plus").addEventListener("click", function(){
+            updatePlus("Economic-class-count",100);
+        })
+
+
+
+        function updatePlus(id,price) {
+            const PlusCount = document.getElementById(id);
+            
+            if(PlusCount.value == NaN){
+                PlusCount.value = 0;
+            }
+
+            const newCount = Number(PlusCount.value);
+            const currentPlusCount = newCount+1;
+
+            PlusCount.value = currentPlusCount;
+             //console.log(newCount);
+             const currentPrice = currentPlusCount*price;
+
+             calculation(); 
+            
+        }
+        //  document.getElementById("economic-plus").addEventListener("click", function(){
+        //     const firstClassPlusCount = document.getElementById("First-class-count");
+            
+        //     if(firstClassPlusCount.value == NaN){
+        //         firstClassPlusCount.value = 0;
+        //     }
+
+        //     const newCount = Number(firstClassPlusCount.value);
+
+        //     firstClassPlusCount.value = newCount+1;
+        //     // console.log(newCount); 
+          
+        //     })
+
+        document.getElementById("firstClass-minus").addEventListener("click", function(){
+            updateMinus("First-class-count");
+        })
+
+        // document.getElementById("economic-minus").addEventListener("click", function(){
+        //     updateMinus("Economic-class-count");
+        // })
+
+        function updateMinus(id) {
+            const firstClassMinusCount = document.getElementById("First-class-count");
+            const newCount = Number(firstClassMinusCount.value);
+                if(newCount>0){
+                    firstClassMinusCount.value = newCount-1;
+                //console.log(newCount);
+                }
+                calculation();
+            
+        }
+
+
+        document.getElementById("economic-minus").addEventListener("click", function(){
+
+            //updateMinus("Economic-class-count");
+            const minusCount = document.getElementById("Economic-class-count");
+
+            
+            
+
+            const newCount = Number(minusCount.value);
+            if(newCount>0){
+                minusCount.value = newCount-1;
+            //console.log(newCount);
+            }
+            calculation();
+
+             
+          
+            })
+
+            function calculation() {
+                //console.log(num);
+                const firstClassCurrentCount =document.getElementById("First-class-count");
+                if(firstClassCurrentCount.value == NaN){
+                    firstClassCurrentCount.value = 0;
+                }
+                const newFirstCount = Number(firstClassCurrentCount.value);
+                //console.log(newFirstCount);
+
+                const economicClassCurrentCount = document.getElementById("Economic-class-count");
+                const newEconomicCount = Number(economicClassCurrentCount.value);
+                const subtotal = newFirstCount*150 + newEconomicCount *100;
+                //console.log(subtotal);
+                document.getElementById("subtotal").innerText = ""+ subtotal;
+                const taxCount = subtotal * 0.1;
+                document.getElementById("tax").innerText = ""+ taxCount;
+
+                const total = subtotal + taxCount;
+                document.getElementById("total").innerText=""+total;
+
+
+                
+
+
+
+
+                
+            }
+
+            
+
+
+    </script>
+
+    <!--Thank You-->
+</body>
+
+</html>
